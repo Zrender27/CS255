@@ -1,0 +1,96 @@
+System Components and Design
+Purpose
+What is the purpose of this project? Who is the client and what do they want their system to be able to do?
+•	The purpose of this project is to design and develop a cloud-based system for DriverPass. DriverPass wants a system that supports online practice exams and on-the-road training reservations, with progress tracking and administrative tools. The system must support role-based access for students, instructors, administrators, and IT staff across web and mobile devices.
+
+System Background
+What does DriverPass want the system to do? What is the problem they want to fix? What are the different components needed for this system?
+•	DriverPass identified that more than 65% of students fail DMV exams due to inadequate preparation. The solution is an integrated system that delivers online instructional content and randomized practice tests, combined with scheduling for certified driving lessons. Components include a student portal, instructor/admin dashboards, reporting and analytics, and IT administration features. The system should also be able to receive DMV updates and notify administrators.
+
+Objectives and Goals
+What should this system be able to do when it is completed? What measurable tasks need to be included in the system design to achieve this?
+•	- Students: Register, purchase training packages, schedule/cancel lessons, take practice tests, and review results.
+- Instructors/Staff: View/manage appointments, assign students to vehicles/instructors, add lesson notes, and monitor progress.
+- Administrators: Generate/export reports, oversee scheduling and package management, and manage communications.
+- IT Staff: Manage users and roles, monitor logs, respond to security alerts, and maintain uptime.
+- Organization: Improve pass rates through structured practice and hands-on training, with data to support continuous improvement.
+
+Requirements
+Nonfunctional Requirements
+In this section, you will detail the different nonfunctional requirements for the DriverPass system. You will need to think about the different things that the system needs to function properly.
+
+Performance Requirements
+What environments (web-based, application, etc.) does this system need to run in? How fast should the system run? How often should the system be updated?
+•	Web-based with mobile browser support; target response time < 3 seconds for common actions (login, schedule, submit test); 99.9% uptime; maintenance windows scheduled off-peak; quarterly feature releases and monthly security updates.
+
+Platform Constraints
+What platforms (Windows, Unix, etc.) should the system run on? Does the back end require any tools, such as a database, to support this application?
+•	Runs on Windows or Unix-like servers with a SQL-based relational database. Compatible with modern browsers (Chrome, Firefox, Safari). Provides REST APIs for integrations (e.g., payment gateway, DMV data).
+
+Accuracy and Precision
+How will you distinguish between different users? Is the input case-sensitive? When should the system inform the admin of a problem?
+•	Unique user IDs for all accounts; consistent timestamping and audit logs for every critical action (login, schedule changes, test submission). Input is validated server-side; case-insensitive for usernames; alerts sent to admins after repeated failures or data mismatches.
+
+Adaptability 
+Can you make changes to the user (add/remove/modify) without changing code? How will the system adapt to platform updates? What type of access does the IT admin need? 
+•	Role and package configuration must be changeable through the admin UI (no code changes). Modular services allow enabling/disabling packages. System supports versioned APIs and is resilient to browser/OS updates. IT admins have full access to user management and configuration panels.
+
+Security
+What is required for the user to log in? How can you secure the connection or the data exchange between the client and the server? What should happen to the account if there is a “brute force” hacking attempt? What happens if the user forgets their password? 
+•	All traffic uses TLS/HTTPS; passwords hashed with a strong algorithm; account lockout after 5 failed attempts; MFA required for staff roles; password reset via verified email link; regular security logging and alerting for suspected brute-force activity.
+
+Functional Requirements
+Using the information from the scenario, think about the different functions the system needs to provide. Each of your bullets should start with “The system shall . . .” For example, one functional requirement might be, “The system shall validate user credentials when logging in.”
+•	- The system shall validate user credentials during login.
+- The system shall allow students to purchase training packages via a secure payment gateway.
+- The system shall enable students to schedule, cancel, or reschedule driving lessons.
+- The system shall provide randomized practice tests with instant scoring and review.
+- The system shall allow instructors to record lesson notes and mark attendance.
+- The system shall generate reports on student activity, outcomes, and scheduling for administrators.
+- The system shall ingest relevant DMV updates and notify administrators.
+
+User Interface
+What are the needs of the interface? Who are the different users for this interface? What will each user need to be able to do through the interface? How will the user interact with the interface (mobile, browser, etc.)? 
+•	- Students: browser/mobile UI for registration, payments, practice tests, scheduling, and viewing progress.
+- Instructors: dashboard to manage schedules, see assigned students, and enter lesson notes.
+- Administrators: reporting dashboards, scheduling oversight, package and content management.
+- IT Staff: admin console for user/role management, logs, and security monitoring.
+
+Assumptions
+What things were not specifically addressed in your design above? What assumptions are you making in your design about the users or the technology they have? 
+•	- Users have reliable internet access and modern browsers.
+- DMV exposes an interface or data feed suitable for integration.
+- Certified instructors and vehicles are available to meet scheduling demand.
+- Payment processing will use a compliant third-party gateway.
+
+Limitations
+Any system you build will naturally have limitations. What limitations do you see in your system design? What limitations do you have as far as resources, time, budget, or technology?
+•	- Initial release limited to English-language UI and U.S. DMV rules.
+- External integrations (e.g., DMV) may introduce delays outside project control.
+- Budget and time constraints may defer advanced analytics to a later phase.
+- In-person lesson capacity is limited by instructor and vehicle availability.
+
+
+SYSTEM DESIGN 
+
+Technical Requirements
+Technical Requirements:
+- Cloud hosting with autoscaling and 99.9% uptime.
+- Web app compatible with modern browsers (Chrome, Firefox, Safari) on desktop and mobile.
+- Backend: RESTful services, SQL database, role-based access control, audit logging.
+- Integrations: Secure API endpoints for DMV updates and payment processing.
+- Security: HTTPS/TLS, password hashing, MFA for staff, lockout after 5 failed attempts, encrypted backups.
+- Tools: Lucidchart for modeling, CI/CD pipeline, monitoring/alerting for performance and security.
+
+
+WEEK EIGHT QUESTIONS 
+Briefly summarize the DriverPass project. Who was the client? What type of system did they want you to design?
+The DriverPass project was for a client called DriverPass, a company that helps students prepare for their driving tests. They wanted a system that would allow students to take online practice exams and schedule on-the-road driving lessons. The system also needed to give instructors, administrators, and IT staff tools to manage lessons, track student progress, and keep the system secure.
+What did you do particularly well?
+I think I did particularly well in organizing the requirements into both functional and nonfunctional categories. I also made sure that my UML diagrams matched the requirements, which helped keep my business requirements and system design documents consistent.
+If you could choose one part of your work on these documents to revise, what would you pick? How would you improve it?
+If I could revise one part of my work, I would improve my class diagram. While it covered the main classes such as Student, Instructor, and Lesson, I think I could have added attributes or sample methods. This would make the relationships and functionality clearer for developers who would need to implement the design.
+How did you interpret the user’s needs and implement them into your system design? Why is it so important to consider the user’s needs when designing?
+I interpreted the user’s needs by closely reviewing the interview transcript and pulling out specific requirements such as scheduling lessons, tracking student progress, and providing secure access. I then made sure each of these appeared in either the requirements list or the UML diagrams. It is important to consider user needs because a system must solve the user’s problems and match their expectations; otherwise, it won’t be practical or valuable, even if the technology works.
+How do you approach designing software? What techniques or strategies would you use in the future to analyze and design a system?
+When designing software, I approach it step by step: first gathering requirements, then modeling workflows, and finally defining objects and technical requirements. In the future, I would like to use use case analysis and user stories more often to capture real-world scenarios. I would also apply iterative design, where diagrams and requirements are refined in stages with feedback, instead of trying to finalize everything at once. This ensures the design stays focused on user needs and is easier to maintain.
